@@ -1,0 +1,46 @@
+<!-----Contact Form Page---->
+<!----127.0.0.100:8000/Contact---->
+
+{% extends "contact/base.html" %}
+
+<!----Django-crispy-forms  to manage forms properties---->
+{% load crispy_forms_tags %}
+
+<!-----Form Display----->
+{% block content %}
+<form action="" method="POST" autocomplete="off">
+    {% csrf_token %}
+    {{form.name|as_crispy_field}}
+    {{form.email|as_crispy_field}}
+
+    <div class="row">
+        <div class="col-md-6">
+            {{form.phone|as_crispy_field}}
+        </div>
+        <div class="col-md-6">
+            {{form.domain|as_crispy_field}}        
+        </div>
+    </div>
+
+    
+    <div class="row" >
+        <div class="col-md-6" >
+            {{form.notes|as_crispy_field}}
+        </div>
+    </div>
+
+    <!-----Submit & List Buttons----->
+    <div class="row">
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i> Submit</button>
+        </div>
+        <div class="col-md-4">
+           <a href="{% url 'contact_list' %}" class="btn btn-secondary btn-block btn-lg">
+               <i class="fas fa-stream"> List</i>
+           </a>
+        </div>
+    
+    </div>
+    
+</form>
+{% endblock content %}
